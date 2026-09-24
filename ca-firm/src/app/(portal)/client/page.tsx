@@ -7,7 +7,6 @@ import {
   FolderOpen,
   CheckCircle2,
   Clock,
-  AlertCircle,
   ArrowRight,
   Upload,
   MessageSquare,

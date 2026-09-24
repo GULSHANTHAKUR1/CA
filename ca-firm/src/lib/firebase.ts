@@ -2,11 +2,8 @@ import { initializeApp, getApps, getApp } from 'firebase/app';
 import {
   getAuth,
   signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
-  updateProfile,
-  updatePassword,
   type User as FirebaseUser,
 } from 'firebase/auth';
 import {
@@ -19,7 +16,6 @@ import {
   query,
   where,
   getDocs,
-  serverTimestamp,
   deleteDoc,
   type Timestamp,
 } from 'firebase/firestore';

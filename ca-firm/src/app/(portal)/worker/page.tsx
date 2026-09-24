@@ -31,6 +31,12 @@ export default function WorkerDashboard() {
     { id: TaskStatus.COMPLETED, label: 'Done', count: myTasks.filter(t => t.status === TaskStatus.COMPLETED).length },
   ];
 
+  const dueThisWeekCount = activeTasks.filter((t) => {
+    const urgency = getDeadlineUrgency(t.dueDate);
+    return urgency === 'urgent' || urgency === 'soon';
+  }).length;
+  const overdueCount = activeTasks.filter((t) => getDeadlineUrgency(t.dueDate) === 'overdue').length;
+
   return (
     <div className="space-y-6 animate-fade-in">
       <div>
@@ -40,9 +46,9 @@ export default function WorkerDashboard() {
 
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <MetricCard title="Active Tasks" value={activeTasks.length} icon={<ListTodo className="w-5 h-5" />} />
-        <MetricCard title="Due This Week" value={activeTasks.filter(t => { const d = (new Date(t.dueDate).getTime() - Date.now()) / 86400000; return d >= 0 && d <= 7; }).length} icon={<Clock className="w-5 h-5" />} />
+        <MetricCard title="Due This Week" value={dueThisWeekCount} icon={<Clock className="w-5 h-5" />} />
         <MetricCard title="Completed" value={myTasks.filter(t => t.status === TaskStatus.COMPLETED).length} icon={<CheckCircle2 className="w-5 h-5" />} />
-        <MetricCard title="Overdue" value={activeTasks.filter(t => new Date(t.dueDate) < new Date()).length} icon={<AlertCircle className="w-5 h-5" />} />
+        <MetricCard title="Overdue" value={overdueCount} icon={<AlertCircle className="w-5 h-5" />} />
       </div>
 
       <Tabs tabs={statusTabs} activeTab={statusFilter} onChange={setStatusFilter} />

@@ -136,8 +136,16 @@ export default function ContactPage() {
                       <Phone className="w-4 h-4 text-primary" />
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-ink">Phone</p>
-                      <p className="text-sm text-muted-foreground">+91 98765 43210</p>
+                      <p className="text-sm font-medium text-ink">Phone & WhatsApp</p>
+                      <p className="text-sm text-muted-foreground">+91 78272 25372</p>
+                      <a
+                        href="https://wa.me/917827225372?text=Hello%20Sharma%20%26%20Associates%2C%20I%20have%20an%20inquiry."
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-xs text-[#25D366] font-semibold mt-1 hover:underline"
+                      >
+                        <span>💬 Message on WhatsApp</span>
+                      </a>
                     </div>
                   </li>
                   <li className="flex items-start gap-3">

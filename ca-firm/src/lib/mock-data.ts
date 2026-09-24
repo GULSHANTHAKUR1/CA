@@ -14,7 +14,6 @@ import {
   ServicePage,
   DocumentRequest,
   MessageThread,
-  Message,
 } from './types';
 
 // ============================================================

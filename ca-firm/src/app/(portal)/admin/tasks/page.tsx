@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Plus, Search, Filter } from 'lucide-react';
+import { Plus, Search } from 'lucide-react';
 import { Card, Badge, Avatar, Button, Tabs, ProgressBar, Modal, Input, Select, Textarea } from '@/components/ui';
 import { mockTasks, mockClients, mockUsers } from '@/lib/mock-data';
 import { TaskStatus, Priority, Role, taskStatusLabels, priorityLabels } from '@/lib/types';

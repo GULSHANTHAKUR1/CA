@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft, CheckCircle2, Circle, Clock, FileText, MessageSquare, Upload, Check } from 'lucide-react';
+import { ArrowLeft, CheckCircle2, Circle, FileText, MessageSquare, Upload, Check } from 'lucide-react';
 import { Card, Badge, Button, Avatar, ProgressBar, Textarea } from '@/components/ui';
 import { mockTasks, mockActivityLogs, mockDocuments } from '@/lib/mock-data';
 import { TaskStatus, taskStatusLabels, priorityLabels } from '@/lib/types';

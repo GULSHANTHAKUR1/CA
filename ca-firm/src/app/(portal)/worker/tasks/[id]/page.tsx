@@ -7,7 +7,6 @@ import {
   ArrowLeft,
   CheckCircle2,
   Circle,
-  Clock,
   FileText,
   MessageSquare,
   Upload,

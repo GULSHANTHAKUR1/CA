@@ -22,6 +22,7 @@ import {
 import { Avatar, Dropdown, DropdownItem } from '@/components/ui';
 import { Role } from '@/lib/types';
 import { useAuth } from '@/lib/auth-context';
+import { WhatsAppButton } from '@/components/public/layout-components';
 
 // ============================================================
 // Navigation Configurations
@@ -313,6 +314,7 @@ export default function PortalLayout({ children }: { children: React.ReactNode }
           {children}
         </main>
       </div>
+      <WhatsAppButton />
     </div>
   );
 }

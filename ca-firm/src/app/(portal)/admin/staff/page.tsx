@@ -298,17 +298,26 @@ export default function StaffPage() {
   const [togglingId, setTogglingId] = useState<string | null>(null);
   const [loadError, setLoadError] = useState<string | null>(null);
 
-  const fetchWorkers = useCallback(async () => {
-    try {
-      setLoadError(null);
-      const result = await getAllWorkers();
-      setWorkers(result);
-    } catch (err) {
-      console.error('Error fetching workers:', err);
-      setLoadError('Failed to load staff members. Please refresh the page.');
-    } finally {
-      setIsLoading(false);
-    }
+  const fetchWorkers = useCallback(() => {
+    const isMounted = true;
+    getAllWorkers()
+      .then((result) => {
+        if (isMounted) {
+          setWorkers(result);
+          setLoadError(null);
+        }
+      })
+      .catch((err) => {
+        console.error('Error fetching workers:', err);
+        if (isMounted) {
+          setLoadError('Failed to load staff members. Please refresh the page.');
+        }
+      })
+      .finally(() => {
+        if (isMounted) {
+          setIsLoading(false);
+        }
+      });
   }, []);
 
   useEffect(() => {

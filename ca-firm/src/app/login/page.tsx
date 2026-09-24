@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Scale, Mail, Lock, ArrowRight, Eye, EyeOff, AlertCircle, Loader2, Shield } from 'lucide-react';
-import { Button, Input } from '@/components/ui';
+import { Button } from '@/components/ui';
 import { useAuth } from '@/lib/auth-context';
 
 export default function LoginPage() {
@@ -28,13 +28,6 @@ export default function LoginPage() {
       router.replace(routes[role] || '/admin');
     }
   }, [isAuthenticated, role, router]);
-
-  // Clear errors when fields change
-  useEffect(() => {
-    if (authError) clearError();
-    setValidationErrors({});
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [email, password]);
 
   const validate = (): boolean => {
     const errors: { email?: string; password?: string } = {};
@@ -83,6 +76,17 @@ export default function LoginPage() {
       </div>
     );
   }
+
+  const handleQuickLogin = async (quickEmail: string) => {
+    setEmail(quickEmail);
+    setPassword('password123');
+    setIsSubmitting(true);
+    try {
+      await login(quickEmail, 'password123');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background flex">
@@ -142,9 +146,54 @@ export default function LoginPage() {
           </div>
 
           <h2 className="text-2xl font-bold text-ink mb-2">Sign in to your account</h2>
-          <p className="text-muted-foreground mb-8">
-            Enter your credentials to access the portal.
+          <p className="text-muted-foreground mb-6">
+            Enter your credentials or select a role to access the portal.
           </p>
+
+          {/* Quick Demo Access Bar */}
+          <div className="mb-6 p-3.5 bg-slate-50 border border-slate-200 rounded-xl space-y-2.5">
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">Quick 1-Click Demo Login</span>
+              <span className="text-[10px] bg-blue-100 text-blue-800 px-2 py-0.5 rounded font-medium">Select Role</span>
+            </div>
+            <div className="grid grid-cols-3 gap-2">
+              <button
+                type="button"
+                onClick={() => handleQuickLogin('rajesh@sharmaassociates.in')}
+                disabled={isSubmitting}
+                className="p-2.5 text-left bg-white hover:bg-blue-50 border border-slate-200 hover:border-blue-300 rounded-lg text-xs transition-all cursor-pointer shadow-sm group"
+              >
+                <div className="font-semibold text-slate-800 group-hover:text-blue-600 flex items-center gap-1">
+                  🛡️ Admin
+                </div>
+                <div className="text-[10px] text-slate-500 truncate">Rajesh Sharma</div>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => handleQuickLogin('priya@sharmaassociates.in')}
+                disabled={isSubmitting}
+                className="p-2.5 text-left bg-white hover:bg-blue-50 border border-slate-200 hover:border-blue-300 rounded-lg text-xs transition-all cursor-pointer shadow-sm group"
+              >
+                <div className="font-semibold text-slate-800 group-hover:text-blue-600 flex items-center gap-1">
+                  💼 Staff
+                </div>
+                <div className="text-[10px] text-slate-500 truncate">Priya Mehta</div>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => handleQuickLogin('vikram@technovate.com')}
+                disabled={isSubmitting}
+                className="p-2.5 text-left bg-white hover:bg-blue-50 border border-slate-200 hover:border-blue-300 rounded-lg text-xs transition-all cursor-pointer shadow-sm group"
+              >
+                <div className="font-semibold text-slate-800 group-hover:text-blue-600 flex items-center gap-1">
+                  👤 Client
+                </div>
+                <div className="text-[10px] text-slate-500 truncate">Vikram Singh</div>
+              </button>
+            </div>
+          </div>
 
           {/* Auth Error Alert */}
           {authError && (

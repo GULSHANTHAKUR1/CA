@@ -2,7 +2,7 @@ import React from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ArrowRight, ChevronDown, CheckCircle2, Phone } from 'lucide-react';
+import { ArrowRight, ChevronDown, Phone } from 'lucide-react';
 import { mockServicePages } from '@/lib/mock-data';
 
 type Props = {

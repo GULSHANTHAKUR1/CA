@@ -6,7 +6,6 @@ import { Button } from '@/components/ui';
 import {
   auth,
   db,
-  setupAdminProfile,
 } from '@/lib/firebase';
 import {
   createUserWithEmailAndPassword,
